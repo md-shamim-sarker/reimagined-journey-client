@@ -3,7 +3,15 @@ import {Link} from 'react-router-dom';
 import {AuthContext} from '../contexts/UserContext';
 
 const Header = () => {
-    const {user} = useContext(AuthContext);
+    const {user, setUser, logOut} = useContext(AuthContext);
+    const logOutHandler = () => {
+        logOut()
+            .then(() => {
+                setUser(null);
+            }).catch((error) => {
+                console.log(error);
+            });
+    };
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -33,7 +41,7 @@ const Header = () => {
             <div className="navbar-end">
                 {
                     user?.uid
-                        ? <button className='btn btn-primary'>Logout</button>
+                        ? <button onClick={logOutHandler} className='btn btn-primary'>Logout</button>
                         : <Link to={"/login"} className='btn btn-primary'>Login</Link>
                 }
             </div>
