@@ -23,8 +23,13 @@ const Header = () => {
                         <li><Link to={'/'}>Home</Link></li>
                         <li><Link to={'/services'}>Services</Link></li>
                         <li><Link to={'/blog'}>Blog</Link></li>
-                        <li><Link to={'/myreviews'}>My Reviews</Link></li>
-                        <li><Link to={'/addservices'}>Add Services</Link></li>
+                        {
+                            user?.uid &&
+                            <>
+                                <li><Link to={`/myreviews/${user?.email}`}>My Reviews</Link></li>
+                                <li><Link to={'/addservices'}>Add Services</Link></li>
+                            </>
+                        }
                     </ul>
                 </div>
                 <Link className="btn btn-primary normal-case text-xl">Site Name</Link>
@@ -34,8 +39,13 @@ const Header = () => {
                     <li><Link to={'/'}>Home</Link></li>
                     <li><Link to={'/services'}>Services</Link></li>
                     <li><Link to={'/blog'}>Blog</Link></li>
-                    <li><Link to={'/myreviews'}>My Reviews</Link></li>
-                    <li><Link to={'/addservices'}>Add Services</Link></li>
+                    {
+                        user?.uid &&
+                        <>
+                            <li><Link to={`/myreviews/${user?.email}`}>My Reviews</Link></li>
+                            <li><Link to={'/addservices'}>Add Services</Link></li>
+                        </>
+                    }
                 </ul>
             </div>
             <div className="navbar-end">

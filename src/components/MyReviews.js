@@ -1,6 +1,9 @@
 import React from 'react';
+import {useLoaderData} from 'react-router-dom';
 
 const MyReviews = () => {
+    const reviews = useLoaderData();
+    console.log(reviews);
     return (
         <div className='w-11/12 lg:w-4/5 mx-auto'>
             <h2 className='text-3xl text-center font-bold my-10'>My All Reviews</h2>
@@ -15,66 +18,20 @@ const MyReviews = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className='text-left'>
-                                <button className='btn btn-primary'>Delete</button>
-                            </td>
-                            <td className='text-center'>This is service title</td>
-                            <td className='text-center'>This is my review</td>
-                            <td className='text-right'>
-                                <button className='btn btn-primary'>Update</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-left'>
-                                <button className='btn btn-primary'>Delete</button>
-                            </td>
-                            <td className='text-center'>This is service title</td>
-                            <td className='text-center'>This is my review</td>
-                            <td className='text-right'>
-                                <button className='btn btn-primary'>Update</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-left'>
-                                <button className='btn btn-primary'>Delete</button>
-                            </td>
-                            <td className='text-center'>This is service title</td>
-                            <td className='text-center'>This is my review</td>
-                            <td className='text-right'>
-                                <button className='btn btn-primary'>Update</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-left'>
-                                <button className='btn btn-primary'>Delete</button>
-                            </td>
-                            <td className='text-center'>This is service title</td>
-                            <td className='text-center'>This is my review</td>
-                            <td className='text-right'>
-                                <button className='btn btn-primary'>Update</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-left'>
-                                <button className='btn btn-primary'>Delete</button>
-                            </td>
-                            <td className='text-center'>This is service title</td>
-                            <td className='text-center'>This is my review</td>
-                            <td className='text-right'>
-                                <button className='btn btn-primary'>Update</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-left'>
-                                <button className='btn btn-primary'>Delete</button>
-                            </td>
-                            <td className='text-center'>This is service title</td>
-                            <td className='text-center'>This is my review</td>
-                            <td className='text-right'>
-                                <button className='btn btn-primary'>Update</button>
-                            </td>
-                        </tr>
+                        {
+                            reviews.map(review =>
+                                <tr key={review?._id}>
+                                    <td className='text-left'>
+                                        <button className='btn btn-primary'>Delete</button>
+                                    </td>
+                                    <td className='text-center'>{review?.serviceTitle}</td>
+                                    <td className='text-center'>{review?.review?.slice(0, 10)}...</td>
+                                    <td className='text-right'>
+                                        <button className='btn btn-primary'>Update</button>
+                                    </td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>
